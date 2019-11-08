@@ -20,6 +20,8 @@ RUN groupadd -g ${GID} ${GROUP} && \
     yum clean all && \
     rm -rf /var/cache/yum
 
+ENV DEFAULT_USER=${USER}
 USER ${USER}
 WORKDIR ${APP_HOME}
+
 CMD /bin/bash
