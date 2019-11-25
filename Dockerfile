@@ -1,4 +1,4 @@
-FROM centos:centos8
+FROM centos:centos7
 
 LABEL maintainer="info@catapult.cx"
 LABEL org.label-schema.description="Base centos 8 image"
@@ -13,6 +13,7 @@ RUN groupadd -g ${GID} ${GROUP} && \
     useradd -u ${UID} -g ${GID} -m -d ${APP_HOME} -s /bin/bash ${USER} && \
     yum update -y && \
     yum install -y curl git tar unzip openssh epel-release wget langpacks-en_GB && \
+    localedef -c -f UTF-8 -i en_GB en_GB.UTF-8 && \
     echo "alias ll='ls -h -l --color'" >> /etc/bashrc && \
     echo "LANG=\"en_GB.UTF-8\"" > /etc/sysconfig/i18n && \
     echo "LANG=en_GB.UTF-8" > /etc/locale.conf && \
